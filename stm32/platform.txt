@@ -1,0 +1,25 @@
+# CUSTOM STM32 ARM Core and platform.
+# ------------------------------
+#
+# For more info:
+# https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+
+name=Custom STM32duino Boards
+version=1.0.0
+
+# openocd + stlink
+tools.openocd.path=
+tools.openocd.cmd=openocd
+tools.openocd.upload.protocol=stlink
+tools.openocd.upload.params.quiet=-d0
+tools.openocd.upload.params.verbose=-d1
+tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
+
+# openocd+stlink+debug
+tools.openocd_debug.path={runtime.platform.path}/tools/
+tools.openocd_debug.cmd=arduino-debugger
+tools.openocd_debug.upload.protocol=stlink
+tools.openocd_debug.upload.params.quiet=-d0
+tools.openocd_debug.upload.params.verbose=-d1
+tools.openocd_debug.upload.pattern="{path}{cmd}" {upload.verbose} "{build.path}" "{build.project_name}"
+

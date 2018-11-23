@@ -1,0 +1,101 @@
+# See: https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+
+menu.pnum=Board part number
+
+menu.xserial=Serial interface
+menu.usb=USB interface
+
+menu.opt=Optimize
+menu.rtlib=C Runtime Library
+
+menu.upload_method=Upload method
+menu.flash=Flash Memory Size
+menu.ram=RAM Size
+
+###############################
+# Generic F103
+bluepill.name=BluePill (kimballsoftware)
+
+bluepill.build.vid=0x1EAF
+bluepill.build.pid=0x0004
+bluepill.vid.0=0x1EAF
+bluepill.pid.0=0x0004
+
+bluepill.build.core=STM32:arduino
+bluepill.build.board=GenF103
+bluepill.build.extra_flags=-D{build.product_line} {build.enable_usb} {build.xSerial} -g
+
+# BLUEPILL_F103C8 board
+# Support: Serial2 (USART2 on PA3, PA2) and Serial3 (USART3 on PB11, PB10)
+bluepill.menu.pnum.BLUEPILL_F103C8=BluePill F103C8
+bluepill.menu.pnum.BLUEPILL_F103C8.upload.maximum_data_size=20480
+bluepill.menu.pnum.BLUEPILL_F103C8.build.mcu=cortex-m3
+bluepill.menu.pnum.BLUEPILL_F103C8.build.board=BLUEPILL_F103C8
+bluepill.menu.pnum.BLUEPILL_F103C8.build.series=STM32F1xx
+bluepill.menu.pnum.BLUEPILL_F103C8.build.product_line=STM32F103xB
+bluepill.menu.pnum.BLUEPILL_F103C8.build.variant=bluepill
+bluepill.menu.pnum.BLUEPILL_F103C8.build.cmsis_lib_gcc=arm_cortexM3l_math
+
+bluepill.menu.flash.C8=64k (default)
+bluepill.menu.flash.C8.upload.maximum_size=65536
+bluepill.menu.flash.C8.build.ldscript=ldscript.ld
+bluepill.menu.flash.CB=128k
+bluepill.menu.flash.CB.upload.maximum_size=131072
+bluepill.menu.flash.CB.build.ldscript=ldscript_cb.ld
+
+# optimizations
+bluepill.menu.opt.osstd=Smallest (-Os default)
+bluepill.menu.opt.oslto=Smallest (-Os) with LTO
+bluepill.menu.opt.oslto.build.flags.optimize=-Os -flto
+bluepill.menu.opt.o1std=Fast (-O1)
+bluepill.menu.opt.o1std.build.flags.optimize=-O1
+bluepill.menu.opt.o1lto=Fast (-O1) with LTO
+bluepill.menu.opt.o1lto.build.flags.optimize=-O1 -flto
+bluepill.menu.opt.o2std=Faster (-O2)
+bluepill.menu.opt.o2std.build.flags.optimize=-O2
+bluepill.menu.opt.o2lto=Faster (-O2) with LTO
+bluepill.menu.opt.o2lto.build.flags.optimize=-O2 -flto
+bluepill.menu.opt.o3std=Fastest (-O3)
+bluepill.menu.opt.o3std.build.flags.optimize=-O3
+bluepill.menu.opt.o3lto=Fastest (-O3) with LTO
+bluepill.menu.opt.o3lto.build.flags.optimize=-O3 -flto
+bluepill.menu.opt.ogstd=Debug (-Og -g)
+bluepill.menu.opt.ogstd.build.flags.optimize=-Og
+
+bluepill.menu.rtlib.nano=Newlib Nano (default)
+bluepill.menu.rtlib.nanofp=Newlib Nano + Float Printf
+bluepill.menu.rtlib.nanofp.build.flags.ldspecs=--specs=nano.specs -u _printf_float
+bluepill.menu.rtlib.nanofs=Newlib Nano + Float Scanf
+bluepill.menu.rtlib.nanofs.build.flags.ldspecs=--specs=nano.specs -u _scanf_float
+bluepill.menu.rtlib.nanofps=Newlib Nano + Float Printf/Scanf
+bluepill.menu.rtlib.nanofps.build.flags.ldspecs=--specs=nano.specs -u _printf_float -u _scanf_float
+bluepill.menu.rtlib.full=Newlib Standard
+bluepill.menu.rtlib.full.build.flags.ldspecs=
+
+bluepill.menu.xserial.generic=Enabled with generic Serial
+bluepill.menu.xserial.none=Enabled without generic Serial
+bluepill.menu.xserial.none.build.xSerial=-DHAL_UART_MODULE_ENABLED -DHWSERIAL_NONE
+bluepill.menu.xserial.disabled=Disabled (No Serial)
+bluepill.menu.xserial.disabled.build.xSerial=
+
+# Upload menu
+bluepill.menu.upload_method.openocd=STLink w/openocd
+bluepill.menu.upload_method.openocd.upload.tool=openocd
+bluepill.menu.upload_method.openocd.upload.protocol=stlink
+
+bluepill.menu.upload_method.openocd_debug=STLink w/openocd+debug
+bluepill.menu.upload_method.openocd_debug.upload.tool=openocd_debug
+bluepill.menu.upload_method.openocd_debug.upload.protocol=stlink
+
+bluepill.menu.upload_method.STLinkMethod=STLink w/st-flash
+bluepill.menu.upload_method.STLinkMethod.upload.protocol=STLink
+bluepill.menu.upload_method.STLinkMethod.upload.tool=STM32:stlink_upload
+
+bluepill.menu.upload_method.serialMethod=Serial w/stm32flash
+bluepill.menu.upload_method.serialMethod.upload.protocol=maple_serial
+bluepill.menu.upload_method.serialMethod.upload.tool=STM32:serial_upload
+
+bluepill.menu.upload_method.bmpMethod=BMP (Black Magic Probe)
+bluepill.menu.upload_method.bmpMethod.upload.protocol=gdb_bmp
+bluepill.menu.upload_method.bmpMethod.upload.tool=STM32:bmp_upload
+
