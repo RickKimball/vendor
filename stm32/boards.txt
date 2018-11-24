@@ -14,7 +14,7 @@ menu.ram=RAM Size
 
 ###############################
 # Generic F103
-bluepill.name=BluePill (kimballsoftware)
+bluepill.name=BluePill (vendor)
 
 bluepill.build.vid=0x1EAF
 bluepill.build.pid=0x0004
