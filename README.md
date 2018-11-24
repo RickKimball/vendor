@@ -60,7 +60,7 @@ stm32/platform.txt:
 tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
 ```
 
-## stm32/platform.txt
+### stm32/platform.txt
 ---
 (optional file)
 
@@ -68,22 +68,22 @@ If this file exists, it created a new sub menu under the Tools/Boards: menu. It 
 
 This file also contains tool entries I added to allow openocd to be used for both upload and debug.  These tools are availble because of the additional "Upload using:" menu entries added to the boards.txt file
 
-## stm32/libraries
+### stm32/libraries
 ---
 (optional directory)
 
 You can create examples that are specific to your board. I added one called leading_zeros/ that shows how to extended the Arduino <Streaming.h> to print leading zeros.
 
-## stm32/tools
+### stm32/tools
 ---
-(options directory and files)
+(optional directory and files)
 
 This is where I added some new tools scripts to provide a way to automatically launch the arm-none-eabi-gdb debugger and openocd as a gdb server connected to an stlink v2 programmer device.  It opens two xterms, one running the openocd gdb server, and a second running the commandline arm-none-eabi-gdb in split layout mode.  It isn't Visual Studio but it is fast if you have spend a littlle time learning the gdb commands.  You can step thorugh the line by line, break at a specific line, and examine memory.
 
-## stm32/variant/*
+### stm32/variant/*
 ---
 (optional files)
 
-If you create this directory and its files, you can create your own pinmap or deal with board level initialization that will be called by the STM32:arduino core.
+If you create this directory and its files, you can define your own pinmap or deal with board level initialization that will be called by the STM32:arduino core.
 
-In this bluepill example, I added a few defines LED_ON and LED_OFF to show that you need to set the bluepill HIGH to turn it off and LOW to turn it on.
+In this bluepill example, I added a few defines LED_GREEN_ON and LED_GREEN_OFF to show that you need to set the bluepill HIGH to turn it off and LOW to turn it on.
