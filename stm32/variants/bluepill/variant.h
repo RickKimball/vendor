@@ -90,9 +90,11 @@ extern const PinName digitalPin[];
 #define NUM_ANALOG_INPUTS       10
 #define NUM_ANALOG_FIRST        20
 
-// On-board LED pin number
+// On-board LED pin number active low
 #define LED_BUILTIN             PC13
 #define LED_GREEN               LED_BUILTIN
+#define LED_GREEN_ON            LOW
+#define LED_GREEN_OFF           HIGH
 
 // SPI Definitions
 #define PIN_SPI_SS              PA4
