@@ -99,3 +99,6 @@ bluepill.menu.upload_method.bmpMethod=BMP (Black Magic Probe)
 bluepill.menu.upload_method.bmpMethod.upload.protocol=gdb_bmp
 bluepill.menu.upload_method.bmpMethod.upload.tool=STM32:bmp_upload
 
+bluepill.bootloader.tool=openocd
+bluepill.bootloader.file=bluepill/nobootloader.hex
+

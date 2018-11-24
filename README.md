@@ -1,7 +1,6 @@
-## vendor/stm32 
+## Custom stm32 bluepill board based on the official ST Arduino core
 ---
 
-Custom stm32 bluepill arduino core
 
 Our goal with this custom core is to create a custom board we probably won't share with the world. We do this to be able to use the STM core without having to directly modify it or having to write our own. Key to this approach is to be able to use the Arduino IDE board manager package to update the STM core when a new version become available without destroying our modifications.  This is accomplished by referencing the STM32:arduino core in our boards.txt. A new board entry is created, a custom variant directory with our custom pin map, and custom tools.
 
@@ -38,9 +37,9 @@ This is where you reference the STM32:variant package. This line shows the corre
 ```
 bluepill.build.core=STM32:arduino
 ```
-Normally the build.core= core name value would just 'arduino'. By using 'STM32:arduino' it tells the arduino builder to use a different vendor's package and core.  The vendor name ST chose to use was 'STM32'. I'm not sure why, a better name might have been 'stm' or 'st'.  However, because they used uppercase STM32, that is what you have to use to reference it.  You can find the name used in $HOME/.arduino15/packages/ .
+Normally the 'build.core=' value would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  The vendor name ST chose to use was 'STM32'. I'm not sure why. A better name might have been 'stm' or 'st'.  However, because they used uppercase STM32, that is what you have to use to reference it.  The vendor name can be found in $HOME/.arduino15/packages/ after an install from the board manager.
 
-Setting the build.core to STM32:arduino, tells the arduino builder to use the platform.txt logic defined from the ST core. It uses whatever commands are defined for the compiler, linker, and tools are in the ST core platform.txt. However, the big difference is that it will use the build.xxx argument entries we define in our boards.txt and pass them to the platform.txt commands in STM32.  We don't have to write any core code, but we can affect the arguments it is provided.
+Setting the build.core to STM32:arduino, tells the arduino builder to use the platform.txt logic defined from the ST core. The builder uses whatever commands are defined for the compiler, linker, and tools in the ST core platform.txt. However, the big difference is that it will use the build.xxx entries we define in our boards.txt and pass them to the platform.txt commands in STM32.  We dont write any core code, instead we use the ST core code but we can affect compiler arguments it is provided from our boards.txt.
 
 When upload is pressed, we also have to indicate if we want to use the tools in STM32. This line provides that information:
 

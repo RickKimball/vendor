@@ -1,0 +1,6 @@
+# fabooh programmers.txt 
+#
+stlink.name=(vendor) openocd+stlinkv2
+stlink.protocol=stlink
+stlink.program.protocol=stlink
+stlink.program.tool=openocd

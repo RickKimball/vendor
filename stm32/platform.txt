@@ -12,8 +12,8 @@ tools.openocd.path=
 tools.openocd.cmd=openocd
 tools.openocd.upload.protocol=stlink
 tools.openocd.upload.params.quiet=-d0
-tools.openocd.upload.params.verbose=-d1
 tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
+tools.openocd.upload.params.verbose=-d1
 
 # openocd+stlink+debug
 tools.openocd_debug.path={runtime.platform.path}/tools/
@@ -23,3 +23,10 @@ tools.openocd_debug.upload.params.quiet=-d0
 tools.openocd_debug.upload.params.verbose=-d1
 tools.openocd_debug.upload.pattern="{path}{cmd}" {upload.verbose} "{build.path}" "{build.project_name}"
 
+tools.openocd.bootloader.params.verbose=-d2
+tools.openocd.bootloader.params.verbose=-d0
+tools.openocd.bootloader.pattern="{path}{cmd}" -f interface/stlink.cfg -f target/stm32f1x.cfg -c init -c "program {runtime.platform.path}/bootloaders/{bootloader.file} verify reset exit"
+
+tools.openocd.erase.params.verbose=-d2
+tools.openocd.erase.params.verbose=-d0
+tools.openocd.erase.pattern="{path}{cmd}" -f interface/stlink.cfg -f target/stm32f1x.cfg -c init -c halt -c "stm32f1x mass_erase 0" -c "reset" -c "exit"
