@@ -38,10 +38,10 @@ bluepill.menu.pnum.BLUEPILL_F103C8.build.cmsis_lib_gcc=arm_cortexM3l_math
 
 bluepill.menu.flash.C8=64k (default)
 bluepill.menu.flash.C8.upload.maximum_size=65536
-bluepill.menu.flash.C8.build.ldscript=ldscript.ld
+bluepill.menu.flash.C8.build.ldscript=stm32f103c8.ld
 bluepill.menu.flash.CB=128k
 bluepill.menu.flash.CB.upload.maximum_size=131072
-bluepill.menu.flash.CB.build.ldscript=ldscript_cb.ld
+bluepill.menu.flash.CB.build.ldscript=stm32f103cb.ld
 
 # optimizations
 bluepill.menu.opt.osstd=Smallest (-Os default)
