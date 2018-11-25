@@ -54,13 +54,13 @@ bluepill.menu.upload_method.openocd.upload.tool=openocd
 ```
 I used upload.tool=openocd, that tells the arduino builder to look in our local platform.txt instead of the STM32 one.  In our platform.txt I create a proper entry that will upload using openocd from our $PATH.  This allows me to setup my PATH entry to point at the openocd I want to use before I launch the arduino IDE.
 
-### stm32/booloaders/*
+### stm32/bootloaders/*
 ---
 (optional directory)
 
 The files in this directory work with entries in boards.txt, platform.txt, and programmer.txt. You must have a tool.erase and tool.bootloader associated with the board for this to work.
 
-As the current STM core doesn't actually support any bootloaders with the bluepill boards, I put a blinky hex file. However, this lets you exercise the bootloader entries even if it doesn't actually load a bootloader.
+As the current STM core doesn't actually support bootloaders or USB with the bluepill boards, I used a simple blinky hex file. However, this lets you exercise the bootloader entries even if it doesn't actually load a bootloader. Someday ;)
 
 ### stm32/platform.txt
 ---
