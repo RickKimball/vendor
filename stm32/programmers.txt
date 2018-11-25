@@ -1,6 +1,8 @@
-# fabooh programmers.txt 
+#########################################
+# programmers.txt
 #
-stlink.name=(vendor) openocd+stlinkv2
+stlink.name=STM stlink-v2 (vendor core)
 stlink.protocol=stlink
 stlink.program.protocol=stlink
 stlink.program.tool=openocd
+
