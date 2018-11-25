@@ -84,7 +84,7 @@ tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload
 
 (optional file)
 
-Here I added an entry for the STM stlink-v2 that points back to the platform.txt openocd tool.
+Here I added an entry for the STM stlink-v2 that points back to the platform.txt openocd tool. Programmer entries here are used when you select the "Upload using Programmer" menu item or hold the Shift key while you press the Upload button. It is also used when you select the "Burn Bootloader" menu item.  Look at the platforms.txt file and find the (tools.openocd.erase tools.openocd.bootloader) and tools.openocd.program to see how the command line is changed to perform each of those specific functions.
 
 ### stm32/libraries
 
