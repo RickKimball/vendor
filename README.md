@@ -1,5 +1,4 @@
-## Custom stm32 bluepill board based on the official STM Arduino core
----
+# Custom stm32 bluepill board based on the official STM Arduino core
 
 
 The goal of this custom core is to create a custom board we probably won't share with the world. We do this to be able to use the STM core without having to directly modify it or having to write our own. Key to this approach is to be able to use the Arduino IDE board manager to update the STM core when a new version become available without destroying our modifications.  This is accomplished by referencing the STM32:arduino core in our boards.txt. A new board entry is created, a custom variant directory with our custom pin map, and custom tools.
@@ -10,8 +9,7 @@ Note: Information on how 3rd party hardware is added to the Arduino environment 
 https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
 This document just highlights the specific things required to reference the STM core.
 
-### install
----
+## install
 
 * Use the Arduino board manager and install the STM core.
 
@@ -31,8 +29,12 @@ This document just highlights the specific things required to reference the STM 
 * Startup the Arduino IDE and select the BluePill (vendor) from
 the newly added menu
 
+## stm32 architecture configuration files
+
+The directory name 'stm32' identifies the architecture of this core.  The architecture name is an arbitrary value however the arduino builder uses to set the global {build.arch} variable.  When you reference other vendors cores like we are doing here the {build.arch} determines which architecture is used in the referenced core.  Library files also use the {build.arch} setting to see if they are compatible. 
+
 ### stm32/boards.txt
----
+
 (required file)
 
 Put your custom board entry in this file.  The stm32/boards.txt file is actually the only required file if you just want to add a new board name with different compile options. However, typically you will also add a variant directory and make pin changes.  In this example the board name used is 'bluepill'
@@ -59,7 +61,7 @@ bluepill.menu.upload_method.openocd.upload.tool=openocd
 I used upload.tool=openocd, that tells the arduino builder to look in our local platform.txt instead of the STM32 one.  In our platform.txt I create a proper entry that will upload using openocd from our $PATH.  This allows me to setup my PATH entry to point at the openocd I want to use before I launch the arduino IDE.
 
 ### stm32/bootloaders/*
----
+
 (optional directory)
 
 The files in this directory work with entries in boards.txt, platform.txt, and programmer.txt. You must have a tool.erase and tool.bootloader associated with the board for this to work.
@@ -67,7 +69,7 @@ The files in this directory work with entries in boards.txt, platform.txt, and p
 As the current STM core doesn't actually support bootloaders or USB with the bluepill boards, I used a simple blinky hex file. However, this lets you exercise the bootloader entries even if it doesn't actually load a bootloader. Someday ;)
 
 ### stm32/platform.txt
----
+
 (optional file)
 
 If this file exists, it creates a new submenu under the Tools/Boards: menu. The submenu shows up as "Custom STM32duino Boards" with one option "BluePill (vendor)".
@@ -78,21 +80,26 @@ stm32/platform.txt:
 ```
 tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
 ```
+### stm32/programmers.txt
+
+(optional file)
+
+Here I added an entry for the STM stlink-v2 that points back to the platform.txt openocd tool.
 
 ### stm32/libraries
----
+
 (optional directory)
 
 You can create examples that are specific to your board. I added one called leading_zeros/ that shows how to extended the Arduino <Streaming.h> to print leading zeros.
 
 ### stm32/tools
----
+
 (optional directory and files)
 
 This is where I added some new tools scripts to provide a way to automatically launch the arm-none-eabi-gdb debugger and openocd as a gdb server connected to an stlink v2 programmer device.  It opens two xterms, one running the openocd gdb server, and a second running the commandline arm-none-eabi-gdb in split layout mode.  It isn't Visual Studio but it is fast if you spend a little time learning the gdb commands.  You can step thorugh the line by line, break at a specific line, and examine memory.
 
 ### stm32/variant/*
----
+
 (optional files)
 
 If you create this directory and its files, you can define your own pinmap or deal with board level initialization that will be called by the STM32:arduino core.
