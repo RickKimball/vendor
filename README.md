@@ -63,9 +63,9 @@ tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload
 ---
 (optional file)
 
-If this file exists, it created a new sub menu under the Tools/Boards: menu. It shows up as "Custom STM32duino Boards" with one option "BluePill (vendor)".
+If this file exists, it creates a new submenu under the Tools/Boards: menu. The submenu shows up as "Custom STM32duino Boards" with one option "BluePill (vendor)".
 
-This file also contains tool entries I added to allow openocd to be used for both upload and debug.  These tools are availble because of the additional "Upload using:" menu entries added to the boards.txt file
+This file also contains tool entries I added to allow openocd to be used for both upload and debug.  These tools are available because of the additional "Upload using:" menu entries added to the boards.txt file
 
 ### stm32/libraries
 ---
