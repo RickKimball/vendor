@@ -5,9 +5,11 @@ The goal of this custom core is to create a custom board we probably won't share
 
 This example core acts as a template for referencing the official STM Arduino Core (the HAL based one).  A custom board called 'bluepill' is created. However it still uses the STM Core code and many of its tools. It also adds additional menu items and custom tools such as openocd upload, and openocd debugging. Lastly, we create some example code that is only shown when our board is selected.  Mostly this core exists to serve as an example of the proper vendor and core reference names used in the boards.txt file.
 
-Note: Information on how 3rd party hardware is added to the Arduino environment is detailed here:
-https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
-This document just highlights the specific things required to reference the STM core.
+**Note:** This document just highlights some specific things required to reference the STM core. More detailed information about adding 3rd party hardware and libraries is found in these documents:
+
+    * https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+    * https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
+
 
 ## install
 
