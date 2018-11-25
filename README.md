@@ -52,7 +52,7 @@ However, in this example I also reference other tools that are from our stm32/pl
 ```
 bluepill.menu.upload_method.openocd.upload.tool=openocd
 ```
-I used upload.tool=openocd, that tells the arduino builder to look in our local platform.txt instead of the STM32 one.  In our platform.txt I create a proper entry that will upload using openocd from our $PATH.  I do this to allow me to setup my PATH entry to point at the openocd I want to use before I launch the arduino IDE.
+I used upload.tool=openocd, that tells the arduino builder to look in our local platform.txt instead of the STM32 one.  In our platform.txt I create a proper entry that will upload using openocd from our $PATH.  This allows me to setup my PATH entry to point at the openocd I want to use before I launch the arduino IDE.
 
 stm32/platform.txt:
 ```
@@ -77,7 +77,7 @@ You can create examples that are specific to your board. I added one called lead
 ---
 (optional directory and files)
 
-This is where I added some new tools scripts to provide a way to automatically launch the arm-none-eabi-gdb debugger and openocd as a gdb server connected to an stlink v2 programmer device.  It opens two xterms, one running the openocd gdb server, and a second running the commandline arm-none-eabi-gdb in split layout mode.  It isn't Visual Studio but it is fast if you have spend a littlle time learning the gdb commands.  You can step thorugh the line by line, break at a specific line, and examine memory.
+This is where I added some new tools scripts to provide a way to automatically launch the arm-none-eabi-gdb debugger and openocd as a gdb server connected to an stlink v2 programmer device.  It opens two xterms, one running the openocd gdb server, and a second running the commandline arm-none-eabi-gdb in split layout mode.  It isn't Visual Studio but it is fast if you spend a little time learning the gdb commands.  You can step thorugh the line by line, break at a specific line, and examine memory.
 
 ### stm32/variant/*
 ---
