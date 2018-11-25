@@ -4,7 +4,7 @@
 
 Our goal with this custom core is to create a custom board we probably won't share with the world. We do this to be able to use the STM core without having to directly modify it or having to write our own. Key to this approach is to be able to use the Arduino IDE board manager package to update the STM core when a new version become available without destroying our modifications.  This is accomplished by referencing the STM32:arduino core in our boards.txt. A new board entry is created, a custom variant directory with our custom pin map, and custom tools.
 
-This example core acts as a template for creating a custom core that references the official STM Arduino Core (the HAL based one).  A custom board called 'bluepill' is created. However it still uses the STM Core code and many of its tools. However, we also add additional menu items and custom tools such as openocd upload, and openocd debugging. Lastly, we create some example code that is only shown when our board is selected.  Mostly this core exists to serve as an example of the proper vendor and core reference names used in the boards.txt file.
+This example core acts as a template for referencing the official STM Arduino Core (the HAL based one).  A custom board called 'bluepill' is created. However it still uses the STM Core code and many of its tools. It also adds additional menu items and custom tools such as openocd upload, and openocd debugging. Lastly, we create some example code that is only shown when our board is selected.  Mostly this core exists to serve as an example of the proper vendor and core reference names used in the boards.txt file.
 
 ## install
 ---
