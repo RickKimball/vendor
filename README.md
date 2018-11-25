@@ -56,17 +56,11 @@ I used upload.tool=openocd, that tells the arduino builder to look in our local 
 
 ### stm32/booloaders/*
 ---
-
 (optional directory)
 
-The files in this directory work with tools/programmer entries and the boards.txt entries. You must have a erase and bootloader tool associated with the board for this to work.
+The files in this directory work with entries in boards.txt, platform.txt, and programmer.txt. You must have a tool.erase and tool.bootloader associated with the board for this to work.
 
 As the current STM core doesn't actually support any bootloaders with the bluepill boards, I put a blinky hex file. However, this lets you exercise the bootloader entries even if it doesn't actually load a bootloader.
-
-stm32/platform.txt:
-```
-tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
-```
 
 ### stm32/platform.txt
 ---
@@ -75,6 +69,11 @@ tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload
 If this file exists, it creates a new submenu under the Tools/Boards: menu. The submenu shows up as "Custom STM32duino Boards" with one option "BluePill (vendor)".
 
 This file also contains tool entries I added to allow openocd to be used for both upload and debug.  These tools are available because of the additional "Upload using:" menu entries added to the boards.txt file
+
+stm32/platform.txt:
+```
+tools.openocd.upload.pattern="{path}{cmd}" {upload.verbose} -f interface/{upload.protocol}.cfg -f target/stm32f1x.cfg -c "program {build.path}/{build.project_name}.hex verify reset exit"
+```
 
 ### stm32/libraries
 ---
