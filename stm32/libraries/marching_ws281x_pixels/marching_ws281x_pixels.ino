@@ -19,7 +19,7 @@
    2018-07-05: Initial version
 */
 
-#define sizeofs(a) (sizeof(a)/sizeof(a[0]))
+#include "marching_ws281x_pixels.h"
 
 static const unsigned LED_CNT = 4;  // I'm using a 4 pixel led strip, change to suit
 
@@ -155,18 +155,18 @@ void dma_start() {
   // Disable so we can config it
   DMA1_Channel7->CCR = 0;
 
-  DMA1_Channel7->CCR  |= 0
-                         // Set DMA priority level to very high
-                         | (0b11 << DMA_CCR_PL_Pos)
-                         // Set memory transfer size to 8-bits
-                         | ( sizeof(src[0]) == 1 ? (0b00 << DMA_CCR_MSIZE_Pos) : (0b01 << DMA_CCR_MSIZE_Pos))
-                         // Set peripheral transfer size to 16-bits
-                         | (0b01 << DMA_CCR_PSIZE_Pos)
-                         // Enable memory increment mode
-                         | DMA_CCR_MINC
-                         // Data direction
-                         //  1 - Read from memory
-                         | (0b1 << DMA_CCR_DIR_Pos);
+  DMA1_Channel7->CCR |= 0
+                     // Set DMA priority level to very high
+                     | (0b11 << DMA_CCR_PL_Pos)
+                     // Set memory transfer size to 8-bits
+                     | ( sizeof(src[0]) == 1 ? (0b00 << DMA_CCR_MSIZE_Pos) : (0b01 << DMA_CCR_MSIZE_Pos))
+                     // Set peripheral transfer size to 16-bits
+                     | (0b01 << DMA_CCR_PSIZE_Pos)
+                     // Enable memory increment mode
+                     | DMA_CCR_MINC
+                     // Data direction
+                     //  1 - Read from memory
+                     | (0b1 << DMA_CCR_DIR_Pos);
 
   // setup number of bytes to copy, will be zero when done
   DMA1_Channel7->CNDTR = cnt;
@@ -192,8 +192,8 @@ void dma_start() {
   // this sets PA1 pin to LOW at start
 
   TIM2->CCMR1 |= 0
-                 | TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_1 // (0b110) CCR2 PWM mode 1
-                 | TIM_CCMR1_OC2PE;                    // (0b1)   CCR2 preload enabled
+              | TIM_CCMR1_OC2M_2 | TIM_CCMR1_OC2M_1 // (0b110) CCR2 PWM mode 1
+              | TIM_CCMR1_OC2PE;                    // (0b1)   CCR2 preload enabled
 
   // output capture compare channel 2 enabled, pulse is active high
   TIM2->CCER |= TIM_CCER_CC2E;
@@ -201,8 +201,8 @@ void dma_start() {
   TIM2->DIER |= TIM_DIER_CC2DE; // enable DMA request for channel 2
 
   TIM2->DCR |= 0
-               | (1 - 1) << TIM_DCR_DBL_Pos // set DMA burst length to 1 16bits
-               | TIM_DCR_DBA_CCR2;        // set DMA burst base addresss to CCR2
+            | (1 - 1) << TIM_DCR_DBL_Pos // set DMA burst length to 1 16bits
+            | TIM_DCR_DBA_CCR2;        // set DMA burst base addresss to CCR2
 
   // turn on DMA CH7
   DMA1_Channel7->CCR |= DMA_CCR_EN;
@@ -223,7 +223,7 @@ void on_dma_complete()
   DMA1_Channel7->CCR &= ~DMA_CCR_EN;
 
   led_pin_state ^= 1;
-  
+
   digitalWrite(led_pin, (led_pin_state ? LED_GREEN_ON : LED_GREEN_OFF));
 }
 
@@ -236,14 +236,12 @@ void ws281x_pin_alt_output() {
   RCC->APB2ENR |= RCC_APB2ENR_AFIOEN | RCC_APB2ENR_IOPAEN;
   RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
   RCC->AHBENR  |= RCC_AHBENR_DMA1EN;
-  
+
   GPIO_InitTypeDef GPIO_InitStruct;
-  
-  /**TIM2 GPIO Configuration
-    PA1     ------> TIM2_CH2
-  */
+
   GPIO_InitStruct.Pin = GPIO_PIN_1;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 }
