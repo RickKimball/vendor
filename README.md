@@ -24,7 +24,7 @@ This example core acts as a template for creating a custom core that references 
 
     *Note: I used the name 'vendor' here, but you could/should use your own unique name.
 ```
-* Startup the Arduino IDE and select the Bluepill (kimballsoftare) from
+* Startup the Arduino IDE and select the BluePill (vendor) from
 the newly added menu
 
 ## stm32/boards.txt
