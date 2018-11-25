@@ -7,8 +7,8 @@ This example core acts as a template for referencing the official STM Arduino Co
 
 **Note:** This document just highlights some specific things required to reference the STM core. More detailed information about adding 3rd party hardware and libraries is found in these documents:
 
-     http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
-     http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
+* http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+* http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
 
 
 ## install
