@@ -41,7 +41,7 @@ The directory name 'stm32' identifies the architecture of this core.  The archit
 
 Put your custom board entry in this file.  The stm32/boards.txt file is actually the only required file if you just want to add a new board name with different compile options. However, typically you will also add a variant directory and make pin changes.  In this example the board name used is 'bluepill'
 
-This is where you reference the STM32:variant package. This line shows the correct vendor name and core name to use for the STM core:
+This is where you reference the VENDOR_ID:CORE_ID package. This line shows the correct vendor name and core name to use for the STM core:
 ```
 bluepill.build.core=STM32:arduino
 ```
@@ -57,7 +57,7 @@ The board manager path looks like this:
 Installing into $HOME/Arduino from github, must look like this: 
      $HOME/Arduino/hardware/STM32/stm32/boards.txt
 
-Normally, the core name value for 'build.core=' would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  The arduino builder will look for the vendor package first in the directory $HOME/Arduino/hardware/STM32/stm32/core/arduino. If that doesn't exist, it will look in /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/cores/arduino. (where the version is 1.4.0 of in the board manager. * assuming linux names here, it is slightly different path for OSX (/Users/&lt;user&gt;/.arduino15 and Windows *need to look this up *)
+Normally, the CORE_ID value for 'build.core=' would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  The arduino builder will look for the vendor package first in the directory $HOME/Arduino/hardware/STM32/stm32/core/arduino. If that doesn't exist, it will look in /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/cores/arduino. (where the version is 1.4.0 of in the board manager. * assuming linux names here, it is slightly different path for OSX (/Users/&lt;user&gt;/.arduino15 and Windows *need to look this up *)
 
 Setting the build.core to STM32:arduino, tells the arduino builder to use the platform.txt logic defined from the STM core. The builder uses whatever commands are defined for the compiler, linker, and tools in the STM core platform.txt. However, the big difference is that it will use the build.xxx entries we define in our boards.txt and pass them to the platform.txt commands in STM32.  We dont write any core code, instead we use the STM core code but we can affect compiler arguments it is provided from our boards.txt.
 
