@@ -8,6 +8,7 @@ This example core acts as a template for referencing the official STM Arduino Co
 **Note:** This document just highlights some specific things required to reference the STM core. More detailed information about adding 3rd party hardware and libraries is found in these documents:
 
 * http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5-3rd-party-Hardware-specification
+* https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.6.x-package_index.json-format-specification
 * http://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
 
 
@@ -45,9 +46,9 @@ This is where you reference the VENDOR_ID:CORE_ID package. This line shows the c
 ```
 bluepill.build.core=STM32:arduino
 ```
-The vendor name STM chose to use was 'STM32'. I'm not sure why. A much better name might have been 'stm' or 'st'.  However, because they used uppercase STM32 as the vendor name, that is what you have to use to reference it.  The vendor name can be found in $HOME/.arduino15/packages/ after an install from the board manager. If you install locally using github, you have to provide the proper vendor name and architecture 'stm32'.
+The vendor name STM chose to use was 'STM32'. I'm not sure why. A much better name might have been 'stm', 'st', or even 'stm32duino'.  However, because they used uppercase STM32 as the vendor name, that is what you have to use to reference it.  The vendor name ('STM32') and architecture name ('stm32') can be found in the STM core json package file.
 
-The board manager path looks like this:
+After the board manager install its path looks like this:
      /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/boards.txt
 
 * where STM32 is the vendor
@@ -56,6 +57,8 @@ The board manager path looks like this:
 
 Installing into $HOME/Arduino from github, must look like this: 
      $HOME/Arduino/hardware/STM32/stm32/boards.txt
+
+Note: If you install locally using github, you have to create the proper directories for vendor name and architecture.
 
 Normally, the CORE_ID value for 'build.core=' would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  The arduino builder will look for the vendor package first in the directory $HOME/Arduino/hardware/STM32/stm32/core/arduino. If that doesn't exist, it will look in /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/cores/arduino. (where the version is 1.4.0 of in the board manager. * assuming linux names here, it is slightly different path for OSX (/Users/&lt;user&gt;/.arduino15 and Windows *need to look this up *)
 
