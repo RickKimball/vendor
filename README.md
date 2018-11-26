@@ -45,7 +45,7 @@ This is where you reference the STM32:variant package. This line shows the corre
 ```
 bluepill.build.core=STM32:arduino
 ```
-The vendor name STM chose to use was 'STM32'. I'm not sure why. A much better name might have been 'stm' or 'st'.  However, because they used uppercase STM32, that is what you have to use to reference the vendor name.  The vendor name can be found in $HOME/.arduino15/packages/ after an install from the board manager. If you install locally using github, you have to provide the proper vendor name and architecture 'stm32'.
+The vendor name STM chose to use was 'STM32'. I'm not sure why. A much better name might have been 'stm' or 'st'.  However, because they used uppercase STM32 as the vendor name, that is what you have to use to reference it.  The vendor name can be found in $HOME/.arduino15/packages/ after an install from the board manager. If you install locally using github, you have to provide the proper vendor name and architecture 'stm32'.
 
 The board manager path looks like this:
      /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/boards.txt
@@ -54,10 +54,10 @@ The board manager path looks like this:
 * where stm32 is the architecture
 * where 1.4.0 is the version number
 
-Installing into $HOME/Arduino from github, the user must create the proper directory structure and it must look like this: 
+Installing into $HOME/Arduino from github, must look like this: 
      $HOME/Arduino/hardware/STM32/stm32/boards.txt
 
-The core name value would for 'build.core=' normally would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  It will look for the vendor package first in the $HOME/Arduino/hardware/STM32/stm32/core/arduino. If that doesn't exist, it will look in /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/cores/arduino. (where the version is 1.4.0 of in the board manager. * assuming linux names here, it is slightly different path for OSX (/Users/<user>/.arduino15 and windows *need to look this up *)
+Normally, the core name value for 'build.core=' would just be 'arduino'. By using 'STM32:arduino' we are telling the arduino builder to go elsewhere and use a different vendor's core package.  The arduino builder will look for the vendor package first in the directory $HOME/Arduino/hardware/STM32/stm32/core/arduino. If that doesn't exist, it will look in /home/user/.arduino15/packages/STM32/hardware/stm32/1.4.0/cores/arduino. (where the version is 1.4.0 of in the board manager. * assuming linux names here, it is slightly different path for OSX (/Users/<user>/.arduino15 and Windows *need to look this up *)
 
 Setting the build.core to STM32:arduino, tells the arduino builder to use the platform.txt logic defined from the STM core. The builder uses whatever commands are defined for the compiler, linker, and tools in the STM core platform.txt. However, the big difference is that it will use the build.xxx entries we define in our boards.txt and pass them to the platform.txt commands in STM32.  We dont write any core code, instead we use the STM core code but we can affect compiler arguments it is provided from our boards.txt.
 
